@@ -9,25 +9,47 @@
 <body>
 
     <script>
-    let y = 300;
+    let player1X = 350;
+    let player1Y = 300;
+    let player2X = 280;
+    let player2Y = 300;
+    let keysPressed = {};
 
-
-
-function setup(){
-    createCanvas( 600, 600);
-    background(202, 5, 77);
-}
-
-function draw(){
-    background(202, 5, 77);
-    square(300,y, 50);
-}
-
-function keyPressed(){
-    if(keyCode == UP_ARROW){
-        y-=1; 
+    function setup(){
+        createCanvas(600, 600);
     }
-}
+
+    function draw(){
+        background(251, 116, 166);
+
+        if(keysPressed[UP_ARROW]) player1Y -= 3;
+        if(keysPressed[DOWN_ARROW]) player1Y += 3;
+        if(keysPressed[LEFT_ARROW]) player1X -= 3;
+        if(keysPressed[RIGHT_ARROW]) player1X += 3;
+
+        if(keysPressed['w']) player2Y -= 3;
+        if(keysPressed['s']) player2Y += 3;
+        if(keysPressed['a']) player2X -= 3;
+        if(keysPressed['d']) player2X += 3;
+
+        fill(181, 255, 225);
+        noStroke();
+        square(player1X, player1Y, 50);
+        fill(147, 229, 171);
+        square(player2X, player2Y, 50);
+    }
+
+    function keyPressed(){
+        keysPressed[keyCode] = true;
+        keysPressed[key.toLowerCase()] = true;
+        return false;
+    }
+
+    function keyReleased(){
+        keysPressed[keyCode] = false;
+        keysPressed[key.toLowerCase()] = false;
+        return false;
+    }
     </script>
 </body>
 </html>
