@@ -14,6 +14,8 @@
     let player2X = 280;
     let player2Y = 300;
     let keysPressed = {};
+    let mpx = 400;
+    let mpy = 400;
 
     function setup(){
         createCanvas(600, 600);
@@ -37,6 +39,16 @@
         square(player1X, player1Y, 50);
         fill(147, 229, 171);
         square(player2X, player2Y, 50);
+        fill(255, 255, 255);
+        square(mpx, mpy, 20);
+
+        //collision detection player 1
+        if (player1X + 50 < mpx || player1X > mpx + 20 || player1Y + 50 < mpy || player1Y > mpy + 20) {
+            alert("collision");
+        
+        } else {
+            console.log(player1X);
+        }
     }
 
     function keyPressed(){
