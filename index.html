@@ -43,13 +43,10 @@
         square(mpx, mpy, 20);
 
         //collision detection player 1
-        if (player1X + 50 < mpx || player1X > mpx + 20 || player1Y + 50 < mpy || player1Y > mpy + 20) {
-            //alert("collision");
-        
-        } else {
-            console.log(player1X);
+        if (player1X + 50 > mpx && player1X < mpx + 20 && player1Y + 50 > mpy && player1Y < mpy + 20) {
+           mpx = random(0, 580);
+           mpy = random(0, 580);
         }
-    }
 
     function keyPressed(){
         keysPressed[keyCode] = true;
