@@ -8,57 +8,97 @@
 </head>
 <body>
 
-    <script>
-    let player1X = 350;
-    let player1Y = 300;
-    let player2X = 280;
-    let player2Y = 300;
-    let keysPressed = {};
-    let mpx = 400;
-    let mpy = 400;
+<script>
+let player1X = 350;
+let player1Y = 300;
+let player2X = 280;
+let player2Y = 300;
+let keysPressed = {};
 
-    function setup(){
-        createCanvas(600, 600);
+let tpx = 400;
+let tpy = 400;
+
+// score variables
+let player1Score = 0;
+let player2Score = 0;
+
+function setup(){
+    createCanvas(600, 600);
+}
+
+function draw(){
+    background(251, 116, 166);
+
+    // player 1 - arrow keys
+    if(keysPressed[UP_ARROW]) player1Y -= 3;
+    if(keysPressed[DOWN_ARROW]) player1Y += 3;
+    if(keysPressed[LEFT_ARROW]) player1X -= 3;
+    if(keysPressed[RIGHT_ARROW]) player1X += 3;
+
+    // player 2 - WASD
+    if(keysPressed['w']) player2Y -= 3;
+    if(keysPressed['s']) player2Y += 3;
+    if(keysPressed['a']) player2X -= 3;
+    if(keysPressed['d']) player2X += 3;
+
+    // player 1 & 2
+    fill(181, 255, 225);
+    noStroke();
+    square(player1X, player1Y, 50);
+
+    fill(147, 229, 171);
+    square(player2X, player2Y, 50);
+
+    // Target square
+    fill(255);
+    square(tpx, tpy, 20);
+
+    // ✅ collision - player 1
+    if (
+        player1X + 50 > tpx &&
+        player1X < tpx + 20 &&
+        player1Y + 50 > tpy &&
+        player1Y < tpy + 20
+    ) {
+        player1Score++;           
+        resetTarget();
     }
 
-    function draw(){
-        background(251, 116, 166);
-
-        if(keysPressed[UP_ARROW]) player1Y -= 3;
-        if(keysPressed[DOWN_ARROW]) player1Y += 3;
-        if(keysPressed[LEFT_ARROW]) player1X -= 3;
-        if(keysPressed[RIGHT_ARROW]) player1X += 3;
-
-        if(keysPressed['w']) player2Y -= 3;
-        if(keysPressed['s']) player2Y += 3;
-        if(keysPressed['a']) player2X -= 3;
-        if(keysPressed['d']) player2X += 3;
-
-        fill(181, 255, 225);
-        noStroke();
-        square(player1X, player1Y, 50);
-        fill(147, 229, 171);
-        square(player2X, player2Y, 50);
-        fill(255, 255, 255);
-        square(mpx, mpy, 20);
-
-        //collision detection player 1
-        if (player1X + 50 > mpx && player1X < mpx + 20 && player1Y + 50 > mpy && player1Y < mpy + 20) {
-           mpx = random(0, 580);
-           mpy = random(0, 580);
-        }
-
-    function keyPressed(){
-        keysPressed[keyCode] = true;
-        keysPressed[key.toLowerCase()] = true;
-        return false;
+    // collision - player 2
+    if (
+        player2X + 50 > tpx &&
+        player2X < tpx + 20 &&
+        player2Y + 50 > tpy &&
+        player2Y < tpy + 20
+    ) {
+        player2Score++;           
+        resetTarget();
     }
 
-    function keyReleased(){
-        keysPressed[keyCode] = false;
-        keysPressed[key.toLowerCase()] = false;
-        return false;
-    }
-    </script>
+   // Display scores
+    fill(255);
+    textSize(20);
+    text("Player 1 Score: " + player1Score, 20, 30);
+    text("Player 2 Score: " + player2Score, 20, 60);
+}
+
+// ✅ reset target position
+function resetTarget(){
+    mpx = random(0, 580);
+    mpy = random(0, 580);
+}
+
+function keyPressed(){
+    keysPressed[keyCode] = true;
+    keysPressed[key.toLowerCase()] = true;
+    return false;
+}
+
+function keyReleased(){
+    keysPressed[keyCode] = false;
+    keysPressed[key.toLowerCase()] = false;
+    return false;
+}
+</script>
 </body>
 </html>
