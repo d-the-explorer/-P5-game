@@ -45,9 +45,17 @@ function draw(){
     fill(181, 255, 225);
     noStroke();
     square(player1X, player1Y, 50);
+    if (player1Y < -50) player1Y = 600;
+    if (player1Y > 600) player1Y = -50;
+    if (player1X < -50) player1X = 600;
+    if (player1X > 600) player1X = -50;
 
     fill(147, 229, 171);
     square(player2X, player2Y, 50);
+    if (player2Y < -50)  player2Y = 600;
+    if (player2Y > 600) player2Y = -50;
+    if (player2X < -50) player2X = 600;
+    if (player2X > 600) player2X = -50;
 
     // Target square
     fill(255);
@@ -80,12 +88,14 @@ function draw(){
     textSize(20);
     text("Player 1 Score: " + player1Score, 20, 30);
     text("Player 2 Score: " + player2Score, 20, 60);
+     
+    //
 }
 
 // ✅ reset target position
 function resetTarget(){
-    mpx = random(0, 580);
-    mpy = random(0, 580);
+    tpx = random(0, 580);
+    tpy = random(0, 580);
 }
 
 function keyPressed(){

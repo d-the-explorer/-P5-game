@@ -10,3 +10,8 @@ Week 2:
 -Add text elements to draw the variables onto the canvas
 - OPTIONAL: work on the score
     - increaSE AND DECREASE OF THE SCORE'S ( p1 AND p2) 
+
+Week 3 :
+- if either players score equals 8 :
+    - a big square with text come up to cover screen
+    - Tell you wether or not player 1/2 won the game
